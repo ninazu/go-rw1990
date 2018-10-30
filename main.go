@@ -103,14 +103,15 @@ func sendR() {
 func waitP() bool {
 	count := 10000
 
-	for bcm2835.GpioLev(PIN) != 0 {
+	for bcm2835.GpioLev(PIN) == 0 {
 		count--
 
 		if count < 0 {
 			return false
 		}
 	}
-	for bcm2835.GpioLev(PIN) == 0 {
+
+	for bcm2835.GpioLev(PIN) != 0 {
 		delay(1)
 	}
 
